@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Projeto1_Supercomp/busca_local_par.cpp
+iostream
+-
+cmath
+-
+ctime
+-
+vector
+-
+chrono
+-
+functional
+-
+fstream
+-
+algorithm
+-
+sstream
+-
+string
+-
+random
+-
+omp.h
+-
+

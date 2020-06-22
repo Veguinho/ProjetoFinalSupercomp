@@ -1,0 +1,1 @@
+/usr/bin/g++     CMakeFiles/busca_local_seq.dir/busca_local_seq.cpp.o  -o busca_local_seq 

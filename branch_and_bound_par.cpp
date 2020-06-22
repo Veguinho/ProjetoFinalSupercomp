@@ -1,0 +1,109 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <vector>
+#include <chrono>
+#include <functional>
+#include <fstream>
+#include <algorithm>
+#include <sstream>
+#include <string>
+#include <omp.h>
+
+using namespace std;
+
+tuple<vector<int>, int> escolhe_alunos(vector<vector<int>>& prefs,
+                                                vector<int>& aluno_projeto, 
+                                                vector<int> vagas,
+                                                tuple<vector<int>, int>& melhor, 
+                                                int satisfacao_atual=0,
+                                                bool ja_passou = false, 
+                                                int i=0){
+    int max_threads = 4;
+    if (get<1>(melhor) <= satisfacao_atual + pow(vagas.size(), 2) * (aluno_projeto.size() - i )){
+        if(i == aluno_projeto.size()){ // todos alunos tem projeto
+            if(!ja_passou){
+                //cout << "Melhor:" << aluno_projeto << satisfacao_atual << "\n";
+                get<0>(melhor) = aluno_projeto;
+                get<1>(melhor) = satisfacao_atual;
+                ja_passou = true;
+            }
+            if(satisfacao_atual > get<1>(melhor)){
+                get<0>(melhor) = aluno_projeto;
+                get<1>(melhor) = satisfacao_atual;
+                ja_passou = true;
+            }
+            return melhor;
+        }
+
+        for(int proj_atual = 0; proj_atual < prefs[1].size(); proj_atual++){
+            if (vagas[proj_atual] > 0){ // projeto prefs[j] tem vaga!
+                vagas[proj_atual] -= 1;
+                aluno_projeto[i] = proj_atual;
+
+                if(i<=max_threads){
+                    #pragma omp task shared(melhor)
+                        escolhe_alunos(prefs, aluno_projeto, vagas, melhor, satisfacao_atual+prefs[i][proj_atual], ja_passou, i+1);
+                    }
+                else {
+                    escolhe_alunos(prefs, aluno_projeto, vagas, melhor, satisfacao_atual+prefs[i][proj_atual], ja_passou, i+1); 
+                }
+                aluno_projeto[i] = -1;
+                vagas[proj_atual] += 1;
+                ja_passou = true;
+            }
+        }
+    }
+    #pragma omp taskwait
+    return melhor;
+}
+
+int main() {
+    string line;
+	vector<int> v_entrada;
+    int tmp_op;
+    getline(cin, line);
+    istringstream ss(line);
+
+    while(ss >> tmp_op){
+        v_entrada.push_back(tmp_op);
+    }
+    int n_alunos, n_projetos, n_choices;
+    n_alunos = v_entrada[0];
+    n_projetos =  v_entrada[1];
+    n_choices = v_entrada[2];
+
+    vector<vector<int>> prefs(n_alunos, vector<int>(n_projetos));
+    vector<int> projs;
+    int proj_tmp;
+ 
+    for (int i=0; i<n_alunos; i++){       
+        getline(cin, line);
+        istringstream ss(line);
+        projs.clear();
+        while(ss >> proj_tmp) {
+            projs.push_back(proj_tmp);
+        }
+        for(int j = 0; j < n_choices; j++){           
+            prefs[i][projs[j]] = pow(n_choices-j,2);
+        }
+    }
+
+    vector<int> vagas(n_projetos, 3);
+    vector<int> aluno_projeto(n_alunos, -1);
+
+    tuple<vector<int>, int> melhor;
+    #pragma omp parallel
+    {
+        #pragma omp master
+        {
+            melhor = escolhe_alunos(prefs, aluno_projeto, vagas, melhor);
+        }
+    }
+
+    cout << get<1>(melhor) << "\n";
+    for (auto m = get<0>(melhor).begin(); m != get<0>(melhor).end(); m++){
+        cout << *m << " ";
+    }
+    cout << "\n";
+}

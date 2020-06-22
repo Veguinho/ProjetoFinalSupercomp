@@ -1,0 +1,1 @@
+/usr/bin/g++     CMakeFiles/busca_exaustiva_seq.dir/busca_exaustiva_seq.cpp.o  -o busca_exaustiva_seq 

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Projeto1_Supercomp/busca_exaustiva_par.cpp
+iostream
+-
+cmath
+-
+ctime
+-
+vector
+-
+chrono
+-
+functional
+-
+fstream
+-
+algorithm
+-
+sstream
+-
+string
+-
+omp.h
+-
+

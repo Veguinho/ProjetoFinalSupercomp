@@ -1,0 +1,9 @@
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/busca_gpu.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/busca_local_seq.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/busca_local_par.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/branch_and_bound_par.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/branch_and_bound_seq.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/busca_exaustiva_par.dir
+/home/ubuntu/Projeto1_Supercomp/build/CMakeFiles/busca_exaustiva_seq.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++     CMakeFiles/busca_local_par.dir/busca_local_par.cpp.o  -o busca_local_par /usr/lib/gcc/x86_64-linux-gnu/7/libgomp.so -lpthread 
