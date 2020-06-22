@@ -1,5 +1,5 @@
 # Projeto1_Supercomp
-Projeto Final de OpenMP e Multiprocessamento - Supercomputação - Insper 2020.1
+Projeto Final de OpenMP e CUDA - Supercomputação - Insper 2020.1
 
 ## O Problema
 
