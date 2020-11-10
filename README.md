@@ -5,7 +5,7 @@ Projeto Final de OpenMP e CUDA - Supercomputação - Insper 2020.1
 
 ###### Este projeto tem como objetivo resolver o problema de escolha de projetos finais de engenharia dos alunos do Insper, utilizando técnicas de computação paralela utilizando algoritmos para solução de problemas NP-Completo
 
-###### Solução:
+### Solução:
 A solução encontrada, em um primeiro momento, foi a mais intutiva possível. No arquivo, busca_exaustiva_seq função escolhe_alunos() recebe a lista de preferências de cada aluno como entrada e recursivamente calcula a satisfação geral com todas as combinações possíveis. A combinação que possuir satisfação geral melhor será a escolhida e retornada pela função. Porém este método acaba tendo que realizar muitas operações desnecessárias para chegar ao resultado e também é pouco otimizado para entradas muito grandes.
 Para tentar melhorar isso, foram implementadas técnicas de programação de busca local e busca local na gpu, com versões também paralelizadas (na versao processada na cpu) para melhorar o tempo de processamento e chegar no mesmo resultado que a solução mais ingênua do problema.
 
@@ -40,7 +40,7 @@ Para tentar melhorar isso, foram implementadas técnicas de programação de bus
 - busca_gpu (busca_local.cu)
     - Este arquivo é baseado no mesmo algoritmo do busca local paralelo, porém é executado por um operador thrust na gpu. Com isso, o calculo é todo feito de maneira pararelizada.
 
-##### Compilando e executando
+## Compilando e executando
 Para compilar o programa digite o seguinte código na pasta do projeto:
 Primeiro ```cmake ./build``` para usuários de Linux ou ```cmake -D CMAKE_CXX_COMPILER=g++-9 -B ./build``` para usuários de Mac  e depois ```make -C ./build```.  
 Para executar o programa digite o seguinte código na pasta do projeto:
